@@ -1,0 +1,10 @@
+#product-details {
+    background-color: lightgray;
+    min-height: 100px;
+    max-height: 200px;
+    height: 150px;
+}
+
+#amount {
+    width: 100px;
+}
