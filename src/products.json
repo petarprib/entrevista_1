@@ -2,16 +2,19 @@
     {
         "id": "GR1",
         "name": "Green tea",
-        "price": "£3.11"
+        "price": "£3.11",
+        "image": "https://ik.imagekit.io/w1xennnidd/greentea_ikJjgfYyz-JN.jpg"
     },
     {
         "id": "SR1",
         "name": "Strawberries",
-        "price": "£5.00"
+        "price": "£5.00",
+        "image": "https://ik.imagekit.io/w1xennnidd/strawberries_KXw4F3KyyPD.jpg"
     },
     {
         "id": "CF1",
         "name": "Coffee",
-        "price": "£11.23"
+        "price": "£11.23",
+        "image": "https://ik.imagekit.io/w1xennnidd/coffee_dnNQPMRls.jpg"
     }
 ]
