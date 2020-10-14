@@ -13,9 +13,9 @@ const Header = () => {
                     <Nav.Link href="/shop">Shop</Nav.Link>
                     <Nav.Link href="/contact">Contact</Nav.Link>
                 </Nav>
-                <div>
-                    <i className="fas fa-shopping-cart"></i>
-                </div>
+                <Nav>
+                    <Nav.Link href="/cart"><i className="fas fa-shopping-cart"></i> SUM</Nav.Link>
+                </Nav>
             </Navbar.Collapse>
         </Navbar>
     );

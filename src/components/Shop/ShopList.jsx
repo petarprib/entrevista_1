@@ -1,17 +1,16 @@
 import React from 'react';
 import ShopItem from './ShopItem.jsx';
+import products from '../../products.json';
 import Row from 'react-bootstrap/Row';
 
-const ShopList = (props) => {
-    const { products } = props;
-
-    const shopList = products.map((product, i) => {
+const ShopList = () => {
+    const shopItems = products.map((product, i) => {
         return <ShopItem key={i} product={product} />
     });
 
     return (
         <Row>
-            {shopList}
+            {shopItems}
         </Row>
     );
 }
