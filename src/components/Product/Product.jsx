@@ -8,8 +8,8 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const Product = (props) => {
-    const [quantity, setQuantity] = useState(0);
+const Product = ({ handleAddToCart }) => {
+    const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
 
     let product;
@@ -27,16 +27,16 @@ const Product = (props) => {
     let handleSubmit = (e) => {
         e.preventDefault();
         if (parseInt(quantity) > 0) {
-            props.handleAddToCart({ ...product, quantity });
+            handleAddToCart({ ...product, quantity });
         }
     }
 
     return (
         <Row>
-            <Col xs={12} sm={6} md={6}>
+            <Col xs={12} md={6}>
                 <Image src={`${product.image}`} alt={`${product.name}`} className="w-100" />
             </Col>
-            <Col xs={12} sm={6} md={6}>
+            <Col xs={12} md={6}>
                 <div id="product-details">
                     <Row>
                         <Col className="text-center" xs={6}>
@@ -47,6 +47,7 @@ const Product = (props) => {
                             <Form
                                 onSubmit={(e) => handleSubmit(e)}
                             >
+                                <Form.Label>Quantity</Form.Label>
                                 <Form.Control
                                     id="quantity"
                                     type="number"

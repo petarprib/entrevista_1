@@ -14,7 +14,7 @@ const Header = () => {
                     <Nav.Link href="/contact">Contact</Nav.Link>
                 </Nav>
                 <Nav>
-                    <Nav.Link href="/cart"><i className="fas fa-shopping-cart"></i> SUM</Nav.Link>
+                    <Nav.Link href="/cart"><i className="fas fa-shopping-cart"></i></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
