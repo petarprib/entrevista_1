@@ -1,62 +1,62 @@
 import React, { useState, useEffect } from 'react';
+import './Cart.css';
 import CartList from './CartList.jsx';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Cart = (props) => {
     const { cart } = props;
     const [cartList, setCartList] = useState([]);
     const [total, setTotal] = useState(0);
-    const [disc, setDisc] = useState(0);
+    const [discount, setdiscount] = useState(0);
 
     let newCartList = cart;
     let totalArray = [];
-    let discArray = [];
+    let discountArray = [];
 
     useEffect(() => {
         setCartList(newCartList);
 
         const reducer = (acc, cur) => acc + cur;
         if (totalArray.length) setTotal(totalArray.reduce(reducer).toFixed(2));
-        if (discArray.length) setDisc(discArray.reduce(reducer).toFixed(2));
+        if (discountArray.length) setdiscount(discountArray.reduce(reducer).toFixed(2));
     }, []);
 
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === "GR1") {
             let greenTeaTotal = (Math.round((cart[i].price * cart[i].quantity / 2) * 100) / 100).toFixed(2);
-
             newCartList[i].total = greenTeaTotal;
-            newCartList[i].disc = greenTeaTotal;
+            newCartList[i].discount = greenTeaTotal;
             totalArray.push(Number(greenTeaTotal));
-            discArray.push(Number(greenTeaTotal));
+            discountArray.push(Number(greenTeaTotal));
         }
 
         if (cart[i].id === "SR1") {
             let strawberriesTotal = (Math.round((cart[i].price * cart[i].quantity) * 100) / 100).toFixed(2);
-            let strawberriesDisc;
+            let strawberriesDiscount;
             if (cart[i].quantity > 2) {
-                strawberriesDisc = (Math.round((strawberriesTotal * .10) * 100) / 100).toFixed(2);
-                strawberriesTotal -= strawberriesDisc;
-                strawberriesTotal = strawberriesTotal.toFixed(2)
+                strawberriesDiscount = (Math.round((strawberriesTotal * .10) * 100) / 100).toFixed(2);
+                newCartList[i].discount = strawberriesDiscount;
+                discountArray.push(Number(strawberriesDiscount));
+                strawberriesTotal -= strawberriesDiscount;
+                strawberriesTotal = strawberriesTotal.toFixed(2);
             }
-
             newCartList[i].total = strawberriesTotal;
-            newCartList[i].disc = strawberriesDisc;
             totalArray.push(Number(strawberriesTotal));
-            discArray.push(Number(strawberriesDisc));
         }
 
         if (cart[i].id === "CF1") {
             let coffeeTotal = (Math.round((cart[i].price * cart[i].quantity) * 100) / 100).toFixed(2);
-            let coffeeDisc;
+            let coffeeDiscount;
             if (cart[i].quantity > 2) {
-                coffeeDisc = (Math.round((coffeeTotal / 3) * 100) / 100).toFixed(2);
-                coffeeTotal -= coffeeDisc;
+                coffeeDiscount = (Math.round((coffeeTotal / 3) * 100) / 100).toFixed(2);
+                newCartList[i].discount = coffeeDiscount;
+                discountArray.push(Number(coffeeDiscount));
+                coffeeTotal -= coffeeDiscount;
                 coffeeTotal = coffeeTotal.toFixed(2)
             }
-
             newCartList[i].total = coffeeTotal;
-            newCartList[i].disc = coffeeDisc;
             totalArray.push(Number(coffeeTotal));
-            discArray.push(Number(coffeeDisc));
         }
     }
 
@@ -66,9 +66,15 @@ const Cart = (props) => {
         return (
             <div>
                 <CartList cartList={cartList} />
-                <p>{total}</p>
-                <p>{disc > 0 && `-${disc}`}</p>
-            </div >
+                <Row id="cart-total" className="d-flex justify-content-end">
+                    <Col className="text-center discount-and-total py-5" xs={2}>
+                        <p className="mb-0">{discount > 0 && `£${discount}`}</p>
+                    </Col>
+                    <Col className="text-center discount-and-total py-5" xs={2}>
+                        <p className="mb-0">£{total}</p>
+                    </Col>
+                </Row>
+            </div>
         );
     }
 }

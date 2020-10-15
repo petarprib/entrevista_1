@@ -1,0 +1,11 @@
+.discount-and-total {
+    background-color: #d3d3d3;
+}
+
+#cart-head {
+    border-bottom: solid #000000 3px;
+}
+
+.cart-item {
+    border-bottom: solid #000000 1px;
+}
